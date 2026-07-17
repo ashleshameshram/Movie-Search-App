@@ -1,15 +1,15 @@
 import React from 'react'
 import './MovieCard.css'
 
-export default function MovieCard() {
+export default function MovieCard({info}) {
     return(
         <div className='container'> 
           <div className='Movie-Card-Container'>
-            <img alt="Movie Poster"/>
+            <img src={info.Poster} alt={info.Title} />
           </div>
           <div className='movie-Desc'>
-            <h4>Movie Name</h4>
-            <h5>Release year</h5>
+            <h4>{info.Title}</h4>
+            <h5>{info.Year}</h5>
           </div>
         </div>
     )
