@@ -1,10 +1,9 @@
-import { useState } from 'react'
-import './App.css'
+import MovieSearchPage from './components/MovieSearchPage'
 
 function App() {
   return (
     <>
-
+      <MovieSearchPage />
     </>
   )
 }
