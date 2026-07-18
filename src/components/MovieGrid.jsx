@@ -1,12 +1,13 @@
 import React from 'react'
 import MovieCard from './MovieCard'
+import './MovieGrid.css'
 
 export default function MovieGrid({movies}) {
     return(
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", padding: "20px" }}>
+        <div className='movie-grid-container'>
             {movies.map((movie) => (
                 <MovieCard key={movie.imdbID} info={movie} />
             ))}
         </div>
     )
-}
+}   

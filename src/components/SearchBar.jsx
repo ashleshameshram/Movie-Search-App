@@ -39,7 +39,7 @@ export default function SearchBar({updateInfo}) {
             <div>
                 <h1>CineFind</h1>
                 <h3>Find any movie in seconds</h3>
-                <span>
+                <span className='searchSpan'>
                     <i className="fa-solid fa-magnifying-glass"></i>
                 </span>
                 <input type='text' placeholder='Search for a movie...'

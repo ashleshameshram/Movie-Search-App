@@ -38,7 +38,7 @@ button:hover{
 i{
     font-size: 30px;
 }
-span{
+.searchSpan{
     position:relative;
     left: 50px;
     top: 5px;

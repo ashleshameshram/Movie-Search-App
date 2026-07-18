@@ -1,22 +1,58 @@
 .container{
-    margin-top: 50px;
-    margin-left: 100px;
-    text-align: left;
+    width: 200px;
+    margin-top: 30px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    padding: 10px;
 }
 
 .Movie-Card-Container{
-    width: 180px;
-    height: 250px;
+    width: 200px;
+    height: 270px;
+    aspect-ratio: 2 / 3;
     overflow: hidden;
-    text-align: left;
     border-radius: 10px;
+    margin-bottom: 10px;
 }
 .Movie-Card-Container img {
-    width: 180px;
-    height: 250px;
+    width: 90%;    
+    height: 100%;
     object-fit: cover;
+    border-radius: 10px;
 }
-.movie-Desc h4, h5{
-    margin: 5px;
+.Movie-Card-Container img:hover {
+    cursor: pointer;
+}
+
+.movie-Desc {
+    width: 100%;
+    min-height: 50px;
+}
+
+.movie-Desc h4 {
+    margin: 5px 0;
     font-weight: 500;
+    font-size: 14px;
+    line-height: 1.3;
+    overflow: hidden;
+    text-align: left;
+    word-wrap: break-word; 
+    white-space: normal;   /* keeps title on one line, cuts off with "..." if too long */
+}
+
+.movie-Desc h5 {
+    margin: 5px 0;
+    font-weight: 500;
+    font-size: 12px;
+    text-align: left;
+    color: #888;
+}
+.no-poster {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #2a2a2a;
+    color: #ffffff;
+    font-size: 17px;
 }
