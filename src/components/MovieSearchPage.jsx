@@ -1,19 +1,19 @@
 import { useState } from 'react'
+import './MovieSearchPage.css'
 import SearchBar from './SearchBar'
 import MovieCard from './MovieCard'
-import './MovieSearchPage.css'
 import MovieGrid from './MovieGrid' 
+import DefaultMovies from './DefaultMovies'
+
 
 export default function MovieSearchPage() {
-    const [movieInfo, setMovieInfo] = useState([{
-      Title: "Titanic",
-      Year: "1997",
-      Poster: "https://m.media-amazon.com/images/M/MV5BYzYyN2FiZmUtYWYzMy00MzViLWJkZTMtOGY1ZjgzNWMwN2YxXkEyXkFqcGc@._V1_QL75_UX380_CR0,2,380,562_.jpg",
-      imdbID: "tt0120338"
-    }]);
+    const [movieInfo, setMovieInfo] = useState([]);
     const [notFound, setNotFound] = useState(false);
+    const [hasSearched, setHasSearched] = useState(false);  //track if user has searched yet
 
   let updateInfo = (newInfo) => {
+    setHasSearched(true);
+
     if (newInfo.Response === "False") {
       setNotFound(true);
       setMovieInfo([]);
@@ -22,20 +22,31 @@ export default function MovieSearchPage() {
       setMovieInfo(newInfo.Search);
     }
   }
+
+  let resetSearch = () => {
+    setHasSearched(false);
+    setNotFound(false);
+    setMovieInfo([]);
+  }
   
 
   return (
     <div>
-      <SearchBar updateInfo={updateInfo}/>
+      <SearchBar updateInfo={updateInfo} resetSearch={resetSearch} />
         {notFound && 
           <h1 className='errorMsg'>
-            Movie not found. Try a different title.&nbsp;
-            <i className="fa-regular fa-face-sad-cry"></i>
+            Movie not found&nbsp;<i className="fa-regular fa-face-sad-cry"></i>.&nbsp;
+            Try a different movie.
           </h1>
         }
-      {movieInfo.length > 0 && <MovieGrid movies={movieInfo} />}
-
-      {/* <MovieGrid /> */}
+      
+      {!hasSearched && <DefaultMovies />}
+      {hasSearched && movieInfo.length > 0 && (
+        <>
+          <h2 className='searchMsg'>From your Search</h2>
+          <MovieGrid movies={movieInfo} />
+        </>
+      )}    
     </div>
   )
 }

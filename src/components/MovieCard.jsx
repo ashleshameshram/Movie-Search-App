@@ -6,7 +6,6 @@ export default function MovieCard({info}) {
   const hasPosterImg = info.Poster && info.Poster !== "N/A" && !imgError;
     return(
         <div className='container'> 
-
           <div className='Movie-Card-Container'>
             {hasPosterImg ? 
               (<img src={info.Poster} alt={info.Title} onError= {() => setImgError(true)} />) 

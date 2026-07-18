@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './SearchBar.css'
 
-export default function SearchBar({updateInfo}) {
+export default function SearchBar({updateInfo, resetSearch}) {
     let [input, setInput] = useState("");
 
     const ApiUrl = "https://www.omdbapi.com";
@@ -31,9 +31,12 @@ export default function SearchBar({updateInfo}) {
     let handleSearch = async(e) => {
             let newInfo = await getMovieInfo();
             updateInfo(newInfo);
-            setInput("");
     }
 
+    let handleClear = () => {
+        setInput("");
+        resetSearch();
+    }
     return(
         <> 
             <div>
@@ -44,6 +47,9 @@ export default function SearchBar({updateInfo}) {
                 </span>
                 <input type='text' placeholder='Search for a movie...'
                     value={input} onChange={handleInput}/>
+                <span className='xcrossSpan'>
+                    <i className="fa-solid fa-xmark" onClick={handleClear}></i>
+                </span>
 
                 <button onClick={handleSearch}>Search</button>
             </div>
