@@ -22,17 +22,11 @@ export default function MovieSearchPage() {
       setMovieInfo(newInfo.Search);
     }
   }
-
-  let resetSearch = () => {
-    setHasSearched(false);
-    setNotFound(false);
-    setMovieInfo([]);
-  }
   
 
   return (
     <div>
-      <SearchBar updateInfo={updateInfo} resetSearch={resetSearch} />
+      <SearchBar updateInfo={updateInfo} />
         {notFound && 
           <h1 className='errorMsg'>
             Movie not found&nbsp;<i className="fa-regular fa-face-sad-cry"></i>.&nbsp;

@@ -4,7 +4,7 @@
     border-radius: 12px;
     flex-shrink: 0;  
     transition: transform 0.3s ease;
-    padding-top: 30px;
+    padding-top: 30px;  
 }
 .container:hover{
     transform: scale(1.1);
@@ -51,6 +51,8 @@
 }
 .no-poster {
     height: 100%;
+    width: 185px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;

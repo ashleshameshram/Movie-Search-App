@@ -5,16 +5,9 @@
     overflow-x: auto;
     overflow-y: hidden;
     scroll-behavior: smooth;
+    scrollbar-width: none;      
+    -ms-overflow-style: none; 
 }
 .movie-grid-container::-webkit-scrollbar {
-    height: 8px;
-}
-
-.movie-grid-container::-webkit-scrollbar-thumb {
-    background: #444;
-    border-radius: 10px;
-}
-
-.movie-grid-container::-webkit-scrollbar-track {
-    background: transparent;
+    display: none;
 }
