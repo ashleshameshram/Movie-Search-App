@@ -109,6 +109,7 @@ h2{
 .history-item {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 10px;
     padding: 8px;
     color: #eee;
@@ -120,15 +121,22 @@ h2{
 .history-item:hover {
     background: #3a3a3a;
 }
+.history-item-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 .history-item i {
     width: 70px;
     text-align: center;
     color: #888;
 }
-.xcrossHistoryClear {
-    font-size: 26px;
+.remove-icon {
+    font-size: 20px;
+    color: #666;
+    padding: 4px;
 }
-.xcrossHistoryClear:hover{
-    cursor: pointer;
-    opacity: 0.9;
+
+.remove-icon:hover {
+    color: #ff5555;
 }

@@ -63,12 +63,11 @@ export default function SearchBar({updateInfo}) {
         localStorage.removeItem("searchHistory");
     }
 
-    let handleEachHistoryClear = (term) => {
+    let removeHistoryItem = (term) => {
         let updatedHistory = history.filter((item) => item !== term);
         setHistory(updatedHistory);
-        localStorage.setItem("SearchHistory", JSON.stringify(updatedHistory));
+        localStorage.setItem("searchHistory", JSON.stringify(updatedHistory));
     }
-    
     return(
         <> 
             <div style={{ position: "relative" }}>
@@ -77,10 +76,12 @@ export default function SearchBar({updateInfo}) {
                 <span className='searchSpan'>
                     <i className="fa-solid fa-magnifying-glass"></i>
                 </span>
+
                 <input type='text' placeholder='Search for a movie...'
                     value={input} onChange={handleInput}
                     onFocus={() => setShowHistory(true)}
-                    onBlur={() => setTimeout(() => setShowHistory(false), 150)}/>
+                    onBlur={() => setTimeout(() => setShowHistory(false), 350)}/>
+
                 <span className='xcrossSpan'>
                     <i className="fa-solid fa-xmark" onClick={handleClear}></i>
                 </span>
@@ -89,21 +90,28 @@ export default function SearchBar({updateInfo}) {
 
                 {history.length > 0 && (
                     <div className={`history-dropdown ${showHistory ? 'show' : ''}`}>
+                        
                         <div className='history-header'>
                             <span>Recent Searches</span>
-                            <button onClick={clearHistory} className='clear-history-btn'>Clear</button>
+                            <button className='clear-history-btn'
+                                onMouseDown={(e) => {
+                                    e.stopPropagation();
+                                    clearHistory();
+                            }}>Clear</button>
                         </div>
+
                         {history.map((term, index) => (
                             <div key={index} className='history-item' onMouseDown={() => handleHistoryClick(term)}>
-                                <i className="fa-solid fa-clock-rotate-left"></i>
-                                <h3>{term}</h3>
-                                <span className='xcrossHistoryClear'>
-                                    <i className="fa-solid fa-xmark " onClick={(e) => {
-                                            e.stopPropagation();
-                                            handleEachHistoryClear(term)
-                                        }}>
-                                    </i>
-                                </span>
+                                
+                                <div className="history-item-left">
+                                    <i className="fa-solid fa-clock-rotate-left"></i>
+                                    <h3>{term}</h3>
+                                </div>
+
+                                <i className="fa-solid fa-xmark remove-icon" 
+                                   onMouseDown={(e) => {e.stopPropagation();
+                                    removeHistoryItem(term);
+                                 }}></i>
                             </div>
                         ))}
                     </div>
