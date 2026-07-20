@@ -1,0 +1,56 @@
+.skeleton-container {
+    width: 200px;
+    padding-top: 10px;
+    flex-shrink: 0;
+}
+
+.skeleton-poster {
+    width: 200px;
+    height: 270px;
+    border-radius: 10px;
+    background: #2a2a2a;
+    margin-bottom: 10px;
+}
+
+.skeleton-title {
+    width: 80%;
+    height: 14px;
+    border-radius: 4px;
+    background: #2a2a2a;
+    margin-bottom: 6px;
+}
+
+.skeleton-year {
+    width: 40%;
+    height: 12px;
+    border-radius: 4px;
+    background: #2a2a2a;
+}
+
+/* the shimmer animation effect */
+.shimmer {
+    position: relative;
+    overflow: hidden;
+}
+
+.shimmer::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 150%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.08),
+        transparent
+    );
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    100% {
+        left: 150%;
+    }
+}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './SearchBar.css'
 
-export default function SearchBar({updateInfo}) {
+export default function SearchBar({updateInfo, startLoading}) {
     let [input, setInput] = useState("");
     let [history,setHistory] = useState([]);
     let [showHistory, setShowHistory] = useState(false);
@@ -39,6 +39,7 @@ export default function SearchBar({updateInfo}) {
 
     let handleSearch = async() => {
         if(input.trim() === "") return;
+        startLoading();
         let newInfo = await getMovieInfo(input);
         updateInfo(newInfo);
         saveToHistory(input);
@@ -48,6 +49,7 @@ export default function SearchBar({updateInfo}) {
 
     let handleHistoryClick = async (term) => {
         setInput(term);
+        startLoading();
         console.log("Input set to:", term);
         let newInfo = await getMovieInfo(term);
         updateInfo(newInfo);
