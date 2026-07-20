@@ -1,0 +1,18 @@
+.navbarContainer{
+    width: 100%;
+    height: 70px;
+    background:linear-gradient(135deg,#17012d,#390a62,#C77DFF);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+div h1{
+    padding-left: 60px;
+}
+h1:hover{
+    cursor: pointer;
+}
+h3{
+    padding-right: 30px;
+}
+

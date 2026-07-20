@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './SearchBar.css'
 
-export default function SearchBar({updateInfo, startLoading}) {
+export default function SearchBar({updateInfo, startLoading,resetSearch}) {
     let [input, setInput] = useState("");
     let [history,setHistory] = useState([]);
     let [showHistory, setShowHistory] = useState(false);
@@ -70,11 +70,14 @@ export default function SearchBar({updateInfo, startLoading}) {
         setHistory(updatedHistory);
         localStorage.setItem("searchHistory", JSON.stringify(updatedHistory));
     }
+
+    useEffect(() => {
+        setInput("");
+    },[resetSearch]);
     return(
         <> 
             <div style={{ position: "relative" }}>
-                <h1>CineFind</h1>
-                <h3>Find any movie in seconds</h3>
+                <br></br>
                 <span className='searchSpan'>
                     <i className="fa-solid fa-magnifying-glass"></i>
                 </span>

@@ -5,6 +5,7 @@ import MovieCard from './MovieCard'
 import MovieGrid from './MovieGrid' 
 import DefaultMovies from './DefaultMovies'
 import SkeletonCard from './SkeletonCard'
+import Navbar from './Navbar'
 
 
 export default function MovieSearchPage() {
@@ -12,6 +13,7 @@ export default function MovieSearchPage() {
     const [notFound, setNotFound] = useState(false);
     const [hasSearched, setHasSearched] = useState(false);  //track if user has searched yet
     const [loading, setLoading] = useState(false);
+    const [resetSearch, setResetSearch] = useState(false);
 
   let updateInfo = (newInfo) => {
     setLoading(false);
@@ -31,9 +33,18 @@ export default function MovieSearchPage() {
     setNotFound(false);
   }
 
+  const goHome = () => {
+    setMovieInfo([]);
+    setNotFound(false);
+    setHasSearched(false);
+    setLoading(false);
+    setResetSearch((prev) => !prev)
+  };
+
   return (
     <div>
-      <SearchBar updateInfo={updateInfo} startLoading={startLoading} />
+      <Navbar goHome={goHome} />
+      <SearchBar updateInfo={updateInfo} startLoading={startLoading} resetSearch={resetSearch} />
         {notFound && 
           <h1 className='errorMsg'>
             Movie not found&nbsp;<i className="fa-regular fa-face-sad-cry"></i>.&nbsp;
@@ -53,7 +64,7 @@ export default function MovieSearchPage() {
       {!loading && !hasSearched && <DefaultMovies />}
       {!loading && hasSearched && movieInfo.length > 0 && (
         <>
-          <h2 className='searchMsg'>From your Search</h2>
+          <h2 className='searchMsg' style={{marginTop:"20px"}}>From your Search</h2>
           <MovieGrid movies={movieInfo} />
         </>
       )}    

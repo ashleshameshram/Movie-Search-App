@@ -43,7 +43,7 @@ export default function DefaultMovies() {
             <>
                 {Object.keys(genreCategories).map((genre) => (
                     <div key={genre} style={{ marginBottom: "30px" }}>
-                        <h2 style={{padding : "0 2px"}}>{genre}</h2>
+                        <h2  style={{padding: "0 20px",marginTop: "30px",marginBottom: "10px"}}>{genre}</h2>
                         <div style={{display: "flex", gap:"16px", padding: "0 30px"}}>
                             {Array(6).fill(0).map((_,index) =>(
                                 <SkeletonCard key={index}/>
@@ -59,7 +59,7 @@ export default function DefaultMovies() {
         <>
             {Object.keys(genreMovies).map((genre) => (
                 <div key={genre} style={{ marginBottom: "30px"}}>
-                    <h2 style={{ padding: "0 20px"}}>{genre}</h2>
+                    <h2 style={{ padding: "0 20px", marginTop:"30px", marginBottom:"10px"}}>{genre}</h2>
                     <MovieGrid movies={genreMovies[genre]} />
                 </div>
             ))}       

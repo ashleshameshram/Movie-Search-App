@@ -29,9 +29,13 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-        --bg: #181818;
+        --bg: #121212;
   }
 }
+
 h1{
   color: white;
+}
+*{
+  margin: 0%;
 }
