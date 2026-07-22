@@ -29,10 +29,8 @@ A movie search app built with React — search any movie, browse curated genre r
 ## 📸 Screenshots
 
 ![HomePage](./public/Home.png)
-![SkeletonLoadingPage](./public/SkeletonLoading.png)
-![SearchResult](./public/SearchResult.png)
 ![MovieDetails](./public/MovieDetail.png)
-![NotFoundPage](./public/NotFoundPage.png)
+
 
 
 ## 📂 Project Structure
