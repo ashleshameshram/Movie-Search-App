@@ -1,11 +1,14 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './MovieCard.css'
 
 export default function MovieCard({info}) {
   const [imgError, setImgError] = useState(false);
   const hasPosterImg = info.Poster && info.Poster !== "N/A" && !imgError;
+  const navigate = useNavigate();
+
     return(
-        <div className='container'> 
+        <div className='container' onClick={() => navigate(`/movie/${info.imdbID}`)}> 
           <div className='Movie-Card-Container'>
             {hasPosterImg ? 
               (<img src={info.Poster} alt={info.Title} onError= {() => setImgError(true)} />) 
