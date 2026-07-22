@@ -1,16 +1,80 @@
-# React + Vite
+# 🎬 CineFind
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A movie search app built with React — search any movie, browse curated genre rows, and click into a full details page with cast, plot, ratings, and recommendations. Built as a personal project to strengthen my React fundamentals, API integration, and routing skills.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✨ Features
 
-## React Compiler
+- **Search any movie** by title using the OMDb API, with multiple matching results shown per search
+- **Search history** — recent searches are saved (via localStorage) and shown in a dropdown; click one to search again instantly, remove individual entries, or clear all
+- **Curated homepage** — genre-based rows (Family Comedies, Action, Horror, International, Hollywood) shown by default when no search is active
+- **Horizontally scrollable rows** for each genre, styled like a streaming platform
+- **Movie details page** — click any poster to open a dedicated page with genre, director, writer, cast, language, country, awards, runtime, IMDb rating, and full plot
+- **"You Might Also Like"** — recommends other movies based on a mix of the current movie's genres
+- **Skeleton loading animations** — shimmer placeholders shown while the homepage, search results, or details page are loading, so the app never shows a blank screen
+- **"Not found" state** — clear message shown when a search returns no results
+- **Reset to homepage** — clicking the logo returns to the default homepage view
+- **Client-side routing** with React Router — navigating between the search page and a movie's details page without a full page reload
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Built With
 
-## Expanding the ESLint configuration
+- **React** (Vite)
+- **React Router** — client-side routing for the details page
+- **JavaScript (ES6+)**
+- **CSS3** (Flexbox, Grid, gradients, animations)
+- **OMDb API** — movie data and posters
+- **Font Awesome** — icons
+- **localStorage** — persisting search history across sessions
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📸 Screenshots
+
+![HomePage](./public/Home.png)
+![SkeletonLoadingPage](./public/SkeletonLoading.png)
+![SearchResult](./public/SearchResult.png)
+![MovieDetails](./public/MovieDetail.png)
+![NotFoundPage](./public/NotFoundPage.png)
+
+
+## 📂 Project Structure
+
+```
+src/
+  components/
+    Navbar.jsx             # Site header/logo, returns to homepage on click
+    SearchBar.jsx          # Search input, search history dropdown, clear/reset
+    MovieCard.jsx          # Displays a single movie's poster, title, year; links to its details page
+    MovieGrid.jsx          # Renders a scrollable row of MovieCards
+    SkeletonCard.jsx       # Shimmer placeholder shown while a card's data is loading
+    DefaultMovies.jsx      # Fetches and displays curated genre rows on the homepage
+    MovieSearchPage.jsx    # Main page — manages search state and switches between views
+    MovieDetails.jsx       # Full details page for a single movie, plus recommendations
+  App.jsx
+  main.jsx
+```
+
+## 🎯 What I Learned
+
+- Fetching and handling data from a third-party REST API.
+- Managing state across multiple components with props
+- Client-side routing with React Router — dynamic route params, programmatic navigation
+- Persisting data across sessions with localStorage (search history)
+- Handling edge cases: missing/incomplete data, broken images, empty search results, duplicate results across multiple API calls
+- Building reusable, prop-driven components (`MovieCard`, `MovieGrid`, `SkeletonCard`)
+- Building skeleton/shimmer loading states for a smoother perceived experience
+- CSS techniques for responsive grids, horizontal scroll containers, gradients, and hover animations
+- Structuring a React project the way it's done in real-world development
+
+## 📝 Notes
+
+This project uses the OMDb API, which doesn't provide built-in "trending," "genre," or "similar movies" endpoints. To work around this:
+- The homepage displays a curated list of movie titles grouped into genre categories rather than dynamically fetched trending data
+- The "You Might Also Like" section reuses the current movie's genre as a keyword search (since OMDb has no true genre-filtering endpoint) to approximate relevant recommendations
+
+## 📄 License
+
+This project is for personal/educational purposes.
+
+## 🙋‍♀️ Author
+
+**Ashlesha Meshram**
+GitHub: [@ashleshameshram](https://github.com/ashleshameshram)
