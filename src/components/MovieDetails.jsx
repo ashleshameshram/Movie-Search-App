@@ -6,8 +6,7 @@ export default function MovieDetails() {
     const { imdbID } = useParams();
     const navigate = useNavigate();
     const [movie, setMovie] = useState(null);
-    const [similarMovies, setSimilarMovies] = useState([]);
-
+    
     const ApiUrl = "https://www.omdbapi.com";
     const ApiKey = import.meta.env.VITE_OMDB_API_KEY;
 
@@ -19,7 +18,7 @@ export default function MovieDetails() {
         }   
         fetchDetails();
     },[imdbID]);
-
+    
 
     if (!movie) {
         return (

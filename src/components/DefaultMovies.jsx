@@ -10,12 +10,8 @@ export default function DefaultMovies() {
     const ApiUrl = "https://www.omdbapi.com";
     const ApiKey = import.meta.env.VITE_OMDB_API_KEY;
     const genreCategories = {
-        "Family Comedies" : ["The Croods: A New Age","KPop Demon Hunters","The Boss Baby","Sonic the Hedgehog 3","The Angry Birds Movie",
-            "Goat","The Smurfs","Kangaroo Jack", "swapped","Dog Gone Trouble","The Twits","Minions & More Volume 2"],
-        "International Movies" : ["The Great Flood","lucy","K.O.","Love Untangled","brick","hunger"],
-        "Action Movies" : ["Bullet Train","The Man from Toronto","The Great Flood","Raw","Lift","War Machine"],
-        "Horror Movies" : ["The Nun II","The Nun","Frankenstein","The Elixir","Ziam"],
-        "Hollywood Movies" : ["Voicemails for Isabelle","Uncharted","Apex","Furious 7","The Lord of the Rings: The Fellowship of the Ring","the batman","Jurassic park"],
+        "Trending Movies" : ["The Odyssey","Voicemails for Isabelle","thrash"],
+        "Comedy Movies" : ["Minions & Monsters","The Devil Wears Prada 2"],
     }
 
     useEffect(() => {
@@ -28,7 +24,9 @@ export default function DefaultMovies() {
                     let data = await response.json();
                     if(data.Response === "True"){
                         movies.push(data);
-                    }
+                    } else {
+            console.error(data.Error);
+        }
                 }
                 result[genre] = movies;
             }
