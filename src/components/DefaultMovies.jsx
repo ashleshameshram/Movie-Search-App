@@ -11,7 +11,7 @@ export default function DefaultMovies() {
     const ApiKey = import.meta.env.VITE_OMDB_API_KEY;
     const genreCategories = {
         "Trending Movies" : ["The Odyssey","Voicemails for Isabelle","thrash"],
-        "Comedy Movies" : ["Minions & Monsters","The Devil Wears Prada 2"],
+        "Comedy Movies" : ["Minions & Monsters","The Devil Wears Prada 2","Toy Stroy 5"],
     }
 
     useEffect(() => {
