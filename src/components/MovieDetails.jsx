@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate, data } from 'react-router-dom'
 import './MovieDetails.css'
-import MovieGrid from './MovieGrid.jsx'
 
 export default function MovieDetails() {
     const { imdbID } = useParams();
@@ -21,32 +20,6 @@ export default function MovieDetails() {
         fetchDetails();
     },[imdbID]);
 
-    useEffect(() => {
-        async function fetchSimilar() {  
-            if(!movie || !movie.Genre) return;
-            let genres = movie.Genre.split(",").map((g) => g.trim());
-            let firstGenre = genres[0];
-            let secondGenre = genres[1] || genres[0];
-
-            let response1 = await fetch(`${ApiUrl}/?apikey=${ApiKey}&s=${firstGenre}`);
-            let data1 = await response1.json();
-            
-            let response2 = await fetch(`${ApiUrl}/?apikey=${ApiKey}&s=${secondGenre}`);
-            let data2 = await response2.json();
-
-            let combined = [];
-            if (data1.Response === "True") combined = [...combined, ...data1.Search];
-            if (data2.Response === "True") combined = [...combined, ...data2.Search];
-
-            let uniqueMovies = combined.filter(
-                (movie,index,self) => 
-                    movie.imdbID !== imdbID &&
-                    index === self.findIndex((m) => m.imdbID === movie.imdbID)
-            );
-            setSimilarMovies(uniqueMovies.slice(0,10));
-        }
-        fetchSimilar();
-    }, [movie]);
 
     if (!movie) {
         return (
@@ -94,14 +67,6 @@ export default function MovieDetails() {
                         <p className='plot'>{movie.Plot}</p>
                     </div>
                 </div>
-            </div>
-            <div style={{marginTop:"70px"}}>
-                {similarMovies.length > 0 && (
-                    <div>
-                        <h2 style={{paddingLeft:"30px"}}>You Might Also Like</h2>
-                        <MovieGrid movies={similarMovies} />
-                    </div>
-                )}
             </div>
         </div>
     )

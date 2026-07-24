@@ -16,7 +16,7 @@ export default function MovieSearchPage() {
     const [resetSearch, setResetSearch] = useState(false);
 
   let updateInfo = (newInfo) => {
-    setLoading(false);
+    setLoading(false);    //to stop loading
     setHasSearched(true);
 
     if (newInfo.Response === "False") {
@@ -38,7 +38,7 @@ export default function MovieSearchPage() {
     setNotFound(false);
     setHasSearched(false);
     setLoading(false);
-    setResetSearch((prev) => !prev)
+    setResetSearch((prev) => !prev);
   };
 
   return (
@@ -47,7 +47,7 @@ export default function MovieSearchPage() {
       <SearchBar updateInfo={updateInfo} startLoading={startLoading} resetSearch={resetSearch} />
         {notFound && 
           <h1 className='errorMsg'>
-            Movie not found&nbsp;<i className="fa-regular fa-face-sad-cry"></i>.&nbsp;
+            Movie not found &nbsp;<i className="fa-regular fa-face-sad-cry"></i>.&nbsp;
             Try a different movie.
           </h1>
         }
@@ -57,12 +57,13 @@ export default function MovieSearchPage() {
               {Array(6).fill(0).map((_,index) => (
                 <SkeletonCard key={index}/>
               ))}
-
             </div>
         )}
       
-      {!loading && !hasSearched && <DefaultMovies />}
-      {!loading && hasSearched && movieInfo.length > 0 && (
+      {!loading && !hasSearched && <DefaultMovies />}   {/* no loading no search then show default movie */}
+      
+      {/* no loading but searching then show result movie */}
+      {!loading && hasSearched && movieInfo.length > 0 && (  
         <>
           <h2 className='searchMsg' style={{marginTop:"20px"}}>From your Search</h2>
           <MovieGrid movies={movieInfo} />

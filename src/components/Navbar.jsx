@@ -6,7 +6,7 @@ export default function Navbar({goHome}) {
         <>
            <div className="navbarContainer">
                 <h1 onClick={goHome}>CineFind</h1>
-                <h3>Find any movie in seconds</h3>
+                <h3 className="navbar-tagline">Find any movie in seconds</h3>
             </div>
         </>
     )

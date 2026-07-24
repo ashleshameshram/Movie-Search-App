@@ -9,7 +9,7 @@ export default function SearchBar({updateInfo, startLoading,resetSearch}) {
     const ApiUrl = "https://www.omdbapi.com";
     const ApiKey = import.meta.env.VITE_OMDB_API_KEY;
 
-    //Loading old History when the page first opens
+    //Loading old History when the page first opens ore renders first time
     useEffect(() => {
         let savedHistory = localStorage.getItem("searchHistory");
         if(savedHistory) {
@@ -33,7 +33,6 @@ export default function SearchBar({updateInfo, startLoading,resetSearch}) {
     }
 
     let handleInput = (e) => {
-        console.log("handleInput called with:", e.target.value);
         setInput(e.target.value);
     }
 
@@ -50,7 +49,6 @@ export default function SearchBar({updateInfo, startLoading,resetSearch}) {
     let handleHistoryClick = async (term) => {
         setInput(term);
         startLoading();
-        console.log("Input set to:", term);
         let newInfo = await getMovieInfo(term);
         updateInfo(newInfo);
         setShowHistory(false);
@@ -74,22 +72,22 @@ export default function SearchBar({updateInfo, startLoading,resetSearch}) {
     useEffect(() => {
         setInput("");
     },[resetSearch]);
+
     return(
         <> 
-            <div style={{ position: "relative" }}>
-                <br></br>
-                <span className='searchSpan'>
-                    <i className="fa-solid fa-magnifying-glass"></i>
-                </span>
-
-                <input type='text' placeholder='Search for a movie...'
-                    value={input} onChange={handleInput}
-                    onFocus={() => setShowHistory(true)}
-                    onBlur={() => setTimeout(() => setShowHistory(false), 350)}/>
-
-                <span className='xcrossSpan'>
-                    <i className="fa-solid fa-xmark" onClick={handleClear}></i>
-                </span>
+            <div className='search-wrapper'>
+                <div className='search-input-group'>
+                    <i className="fa-solid fa-magnifying-glass searchIcon"></i>
+                    <input 
+                        type='text' 
+                        placeholder='Search for a movie...'
+                        value={input} 
+                        onChange={handleInput}
+                        onFocus={() => setShowHistory(true)}
+                        onBlur={() => setTimeout(() => setShowHistory(false), 350)}
+                    />
+                    <i className="fa-solid fa-xmark xcrossIcon" onClick={handleClear}></i>
+                </div>
 
                 <button onClick={handleSearch}>Search</button>
 
@@ -116,7 +114,7 @@ export default function SearchBar({updateInfo, startLoading,resetSearch}) {
                                 <i className="fa-solid fa-xmark remove-icon" 
                                    onMouseDown={(e) => {e.stopPropagation();
                                     removeHistoryItem(term);
-                                 }}></i>
+                                }}></i>
                             </div>
                         ))}
                     </div>
