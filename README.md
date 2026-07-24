@@ -62,15 +62,10 @@ src/
 - CSS techniques for responsive grids, horizontal scroll containers, gradients, and hover animations
 - Structuring a React project the way it's done in real-world development
 
-## 📝 Notes
-
-This project uses the OMDb API, which doesn't provide built-in "trending," "genre," or "similar movies" endpoints. To work around this:
-- The homepage displays a curated list of movie titles grouped into genre categories rather than dynamically fetched trending data
-- The "You Might Also Like" section reuses the current movie's genre as a keyword search (since OMDb has no true genre-filtering endpoint) to approximate relevant recommendations
 
 ## 📄 License
 
-This project is for personal/educational purposes.
+This project is for personal purposes.
 
 ## 🙋‍♀️ Author
 
